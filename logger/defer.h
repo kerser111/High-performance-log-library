@@ -4,24 +4,24 @@
 
 namespace logger {
 
-class ExecuteonScopeExit {
+class ExecuteOnScopeExit {
 public:
-    ExecuteonScopeExit() = default;
+    ExecuteOnScopeExit() = default;
 
-    ExecuteonScopeExit(ExecuteonScopeExit&&) noexcept = default;
+    ExecuteOnScopeExit(ExecuteOnScopeExit&&) noexcept = default;
 
-    ExecuteonScopeExit& operator=(ExecuteonScopeExit&&) noexcept = default;
+    ExecuteOnScopeExit& operator=(ExecuteOnScopeExit&&) noexcept = default;
 
-    ExecuteonScopeExit(const ExecuteonScopeExit&) = delete;
+    ExecuteOnScopeExit(const ExecuteOnScopeExit&) = delete;
 
-    ExecuteonScopeExit& operator=(const ExecuteonScopeExit&) = delete;
+    ExecuteOnScopeExit& operator=(const ExecuteOnScopeExit&) = delete;
 
     template <typename F, typename... Args>
-    ExecuteonScopeExit(F&& f, Args&&... args) {
+    ExecuteOnScopeExit(F&& f, Args&&... args) {
         func_ = std::bind(std::forward<F>(f), std::forward<Args>(args)...);
     }
 
-    ~ExecuteonScopeExit() noexcept {
+    ~ExecuteOnScopeExit() noexcept {
         if (func_) {
             func_();
         }
@@ -29,11 +29,11 @@ public:
 
 private:
     std::function<void()> func_;
-}
+};
 
 }
 
 #define _LOG_CONCAT(a, b) a##b
-#define _MAKE_DEFER_(line) logger::ExecuteonScopeExit _LOG_CONCAT(defer, line) = [&]()
+#define _MAKE_DEFER_(line) logger::ExecuteOnScopeExit _LOG_CONCAT(defer, line) = [&]()
 #undef LOG_DEFER
 #define LOG_DEFER _MAKE_DEFER_(__LINE__)
