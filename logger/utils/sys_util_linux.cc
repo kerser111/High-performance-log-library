@@ -8,11 +8,11 @@ std::size_t GetPageSize() {
     return getpagesize();
 }
 
-std::size_t GetProcessID() {
+std::size_t GetProcessId() {
     return static_cast<std::size_t>(::getpid());
 }
 
-std::size_t GetThreadID() {
+std::size_t GetThreadId() {
     return static_cast<std::size_t>(::gettid());
 }
 

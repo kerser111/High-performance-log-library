@@ -10,11 +10,11 @@ std::size_t GetPageSize() {
     return info.dwPageSize;
 }
 
-std::size_t GetProcessID() {
+std::size_t GetProcessId() {
     return static_cast<std::size_t>(::GetCurrentProcessId());
 }
 
-std::size_t GetThreadID() {
+std::size_t GetThreadId() {
     return static_cast<std::size_t>(::GetCurrentThreadId());
 }
 
