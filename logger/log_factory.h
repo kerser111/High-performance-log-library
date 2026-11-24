@@ -23,4 +23,4 @@ private:
     std::shared_ptr<VariadicLogHandle> log_handle_;
 };
 
-}
+} 

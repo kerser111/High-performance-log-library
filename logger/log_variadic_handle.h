@@ -24,7 +24,7 @@ private:
             return;
         }
         fmt::basic_memory_buffer<char, 256> buf;
-        fmt::detail::vformat_to(buf, fmt, fmt::make_format_args(std::forward<Args>(args)...));
+        fmt::detail::vformat_to(buf, fmt, fmt::make_format_args((args)...));
         LogMsg msg(loc, lvl, StringView(buf.data(), buf.size()));
         LogHandle::Log_(msg);
     }
